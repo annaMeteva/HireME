@@ -29,6 +29,9 @@
     color: var(--primary);
 }
 
+.navbar h1{color: #08994c; margin: 0 0 0 10px;}
+.navbar img.logo{height: 50px;}
+
 @media (max-width: 991.98px) {
     .navbar-dark .navbar-nav .nav-link,
     .navbar-light .navbar-nav .nav-link  {
