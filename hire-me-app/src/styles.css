@@ -1,2 +1,3 @@
-.btn-green,.btn-green:visited,.btn-green:link{background-color: #08994c; color:white; font-weight: 500;}
-.btn-green:hover{background-color: #4cb484;}
+.btn-green, .btn-green:visited,.btn-green:link{background-color: #08994c; color:white; font-weight: 500;}
+.btn-green:hover {background-color: #4cb484;}
+.bg-green { background-color: #00B074; }
