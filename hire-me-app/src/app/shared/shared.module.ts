@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { MainCarouselComponent } from './carousel-animations/main-carousel/main-carousel.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { CategoriesListComponent } from './categories-list/categories-list.component';
 
 
 
 @NgModule({
   declarations: [
     MainCarouselComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CategoriesListComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
   ],
   exports: [
     MainCarouselComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    CategoriesListComponent
   ]
 })
 export class SharedModule { }

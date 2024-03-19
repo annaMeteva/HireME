@@ -1,3 +1,11 @@
 .btn-green, .btn-green:visited,.btn-green:link{background-color: #08994c; color:white; font-weight: 500;}
 .btn-green:hover {background-color: #4cb484;}
 .bg-green { background-color: #00B074; }
+.text-green { color: #00B074; }
+a {
+    color: #00B074;
+    text-decoration: none;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    color: #2B3940;
+}
