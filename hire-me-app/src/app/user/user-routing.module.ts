@@ -17,5 +17,4 @@ const routes: Routes = [
     ],
 })
 export class UserRoutingModule {
-
 }

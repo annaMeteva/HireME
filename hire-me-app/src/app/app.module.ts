@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
+import { JobModule } from './job/job.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserModule } from './user/user.module';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    UserModule
+    UserModule,
+    JobModule
   ],
   providers: [],
   bootstrap: [AppComponent]
