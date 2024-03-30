@@ -9,10 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { JobModule } from './job/job.module';
+import { ErrorComponent } from './error/error.component';
+import { UserRoutingModule } from './user/user-routing.module';
+import { JobRoutingModule } from './job/job-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +26,8 @@ import { JobModule } from './job/job.module';
     BrowserAnimationsModule,
     HttpClientModule,
     UserModule,
-    JobModule
+    JobModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

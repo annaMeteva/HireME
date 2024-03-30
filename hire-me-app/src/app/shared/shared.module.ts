@@ -4,6 +4,10 @@ import { MainCarouselComponent } from './carousel-animations/main-carousel/main-
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { CategoriesListComponent } from './categories-list/categories-list.component';
+import { RouterModule } from '@angular/router';
+import { UserRoutingModule } from '../user/user-routing.module';
+import { JobRoutingModule } from '../job/job-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 
@@ -15,7 +19,8 @@ import { CategoriesListComponent } from './categories-list/categories-list.compo
   ],
   imports: [
     CommonModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule
   ],
   exports: [
     MainCarouselComponent,

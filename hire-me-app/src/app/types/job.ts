@@ -1,11 +1,12 @@
 export interface Job {
-    title: string,
-    description: string,
-    jobNature: string,
-    location: string,
-    qualifications: string,
-    salary: string,
-    category_id: number,
-    user_id: number,
-    created_on: string
+    job_id?: string;
+    category_id: string;
+    created_on: string;
+    description: string;
+    job_nature: string;
+    location: string;
+    qualifications: string[];
+    salary: string;
+    title: string;
+    user_id: string;
 }

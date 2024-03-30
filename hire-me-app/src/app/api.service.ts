@@ -12,10 +12,14 @@ export class ApiService {
 
   getCategories() {
     const { apiUrl } = environment;
-    return this.http.get<Category[]>(`${apiUrl}/categories.json`);
+    return this.http.get<Category[]>(`${apiUrl}/categories`);
   }
   getJobs() {
     const { apiUrl } = environment;
-    return this.http.get<Job[]>(`${apiUrl}/jobs.json`);
+    return this.http.get<Job[]>(`${apiUrl}/jobs`);
+  }
+  getJob(id: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Job>(`${apiUrl}/jobs/${id}`);
   }
 }

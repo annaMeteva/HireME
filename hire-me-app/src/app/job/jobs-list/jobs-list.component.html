@@ -3,7 +3,7 @@
         <h1 class="display-3 text-white mb-3 animated slideInDown">Job List</h1>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb text-uppercase">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">Jobs</li>
             </ol>
         </nav>
@@ -39,13 +39,13 @@
                                 <div class="text-start ps-4">
                                     <h5 class="mb-3">{{job.title}}</h5>
                                     <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-green me-2"></i>{{job.location}}</span>
-                                    <span class="text-truncate me-3"><i class="far fa-clock text-green me-2"></i>{{job.jobNature}}</span>
+                                    <span class="text-truncate me-3"><i class="far fa-clock text-green me-2"></i>{{job.job_nature}}</span>
                                     <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-green me-2"></i>{{job.salary}}</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
                                 <div class="d-flex mb-3">
-                                    <a class="btn btn-green" routerLink="job/">Apply Now</a>
+                                    <a class="btn btn-green"  [routerLink]="job.job_id">Apply Now</a>
                                 </div>
                                 <small class="text-truncate"><i class="far fa-calendar-alt text-green me-2"></i>Published on: {{job.created_on}}</small>
                             </div>

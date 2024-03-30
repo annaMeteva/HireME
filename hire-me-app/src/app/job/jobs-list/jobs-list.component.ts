@@ -16,7 +16,6 @@ export class JobsListComponent implements OnInit {
   ngOnInit(): void {
     this.api.getJobs().subscribe((jobs) => {
       this.jobs = jobs;
-      console.log(jobs);
       // setTimeout(() => {
       //   this.isLoading = false;
       // }, 1000);
