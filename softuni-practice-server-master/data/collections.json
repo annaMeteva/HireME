@@ -1,46 +1,86 @@
 {
-    "books": {
-        "d953e5fb-a585-4d6b-92d3-ee90697398a0": {
-            "author": "J.K.Rowling",
-            "title": "Harry Potter and the Philosopher's Stone"
-        },
-        "d953e5fb-a585-4d6b-92d3-ee90697398a1": {
-            "author": "Svetlin Nakov",
-            "title": "C# Fundamentals"
-        }
+  "categories": [
+    {
+      "category_id": 0,
+      "icon": "fa-mail-bulk",
+      "name": "Marketing"
     },
-    "students": {
-        "54e6d099-6e00-4613-97b7-bc2b6bdc1db5": {
-            "firstName": "Isaac",
-            "lastName": "Netero",
-            "facultyNumber": "90000587896",
-            "grade": 4.99,
-            "_id": "54e6d099-6e00-4613-97b7-bc2b6bdc1db5"
-        },
-        "f94698f3-e4c0-45b2-b391-34e555ed702d": {
-            "firstName": "Nvy",
-            "lastName": "Ose",
-            "facultyNumber": "90000123456",
-            "grade": 6,
-            "_id": "f94698f3-e4c0-45b2-b391-34e555ed702d"
-        },
-        "a8ab018a-5a00-4652-ab3b-036bc91bd21f": {
-            "firstName": "Sunny",
-            "lastName": "Jackson",
-            "facultyNumber": "90000334562",
-            "grade": 4.4,
-            "_id": "a8ab018a-5a00-4652-ab3b-036bc91bd21f"
-        },
-        "a9d1a18d-c617-4f05-b322-05aab720fe19": {
-            "firstName": "Aina",
-            "lastName": "Haward",
-            "facultyNumber": "90000451254",
-            "grade": 5.56,
-            "_id": "a9d1a18d-c617-4f05-b322-05aab720fe19"
-        }
+    {
+      "category_id": 1,
+      "icon": "fa-headset",
+      "name": "Customer Service"
     },
-    "myboard": {
-        "posts": {},
-        "comments": {}
+    {
+      "category_id": 2,
+      "icon": "fa-user-tie",
+      "name": "Human Resource"
+    },
+    {
+      "category_id": 3,
+      "icon": "fa-tasks",
+      "name": "Project Management"
+    },
+    {
+      "category_id": 4,
+      "icon": "fa-chart-line",
+      "name": "Business development"
+    },
+    {
+      "category_id": 5,
+      "icon": "fa-hands-helping",
+      "name": "Sales and Communication"
+    },
+    {
+      "category_id": 6,
+      "icon": "fa-book-reader",
+      "name": "Teaching and Education"
+    },
+    {
+      "category_id": 7,
+      "icon": "fa-drafting-compass",
+      "name": "Design and Creative"
     }
+  ],
+  "companies": [
+   {
+      "address": "Lazurna 6, Gabrovo, Bulgaria",
+      "name": "Test Company",
+      "reg_num": 123456789,
+      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
+    }
+  ],
+  "jobs": [
+    {
+      "category_id": 0,
+      "created_on": "Mar 29, 2024",
+      "description": "Dolor justo tempor duo ipsum accusam rebum gubergren erat. Elitr stet dolor vero clita labore gubergren. Kasd sed ipsum elitr clita rebum ut sea diam tempor. Sadipscing nonumy vero labore invidunt dolor sed, eirmod dolore amet aliquyam consetetur lorem, amet elitr clita et sed consetetur dolore accusam.",
+      "job_id": 0,
+      "job_nature": "Full-time",
+      "location": "Gabrovo, Bulgaria",
+      "qualifications": [
+        "Rebum vero dolores dolores elitr",
+        "Elitr stet dolor vero clita labore gubergren",
+        "Dolor justo tempor duo ipsum accusam"
+      ],
+      "salary": "$1500-$1900",
+      "title": "Marketing manager",
+      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
+    },
+   {
+      "category_id": 7,
+      "created_on": "Mar 20, 2024",
+      "description": "Dolor justo tempor duo ipsum accusam rebum gubergren erat. Elitr stet dolor vero clita labore gubergren. Kasd sed ipsum elitr clita rebum ut sea diam tempor. Sadipscing nonumy vero labore invidunt dolor sed, eirmod dolore amet aliquyam consetetur lorem, amet elitr clita et sed consetetur dolore accusam.",
+      "job_id": "1",
+      "job_nature": "Part-time",
+      "location": "Gabrovo, Bulgaria",
+      "qualifications": [
+        "Rebum vero dolores dolores elitr",
+        "Elitr stet dolor vero clita labore gubergren",
+        "Dolor justo tempor duo ipsum accusam"
+      ],
+      "salary": "$500",
+      "title": "Creative Director",
+      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
+    }
+  ]
 }
