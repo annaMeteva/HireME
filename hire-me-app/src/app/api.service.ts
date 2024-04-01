@@ -22,4 +22,9 @@ export class ApiService {
     const { apiUrl } = environment;
     return this.http.get<Job>(`${apiUrl}/jobs/${id}`);
   }
+  createJob(title: string, jobNature: string, location: string, salary: string, qualifications: string, description: string) {
+    const { apiUrl } = environment;
+    const payload = { title, jobNature, location, salary, qualifications, description };
+    return this.http.post<Job>(`${apiUrl}/jobs`, payload);
+  }
 }

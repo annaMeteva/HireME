@@ -1,22 +1,53 @@
-
 <div class="container-fluid signFormContainer">
-      <div class="row justify-content-center">
-        <div class="col-12 col-sm-6 col-md-4">
-          <form class="form-container">
-          <div class="form-group">
-            <h4 class="text-center font-weight-bold"> Login </h4>
-            <label for="inputEmail">Email</label>
-             <input type="email" class="form-control" id="inputEmail" placeholder="Enter valid email">
-          </div>
-          <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-          </div>
-          <button type="Login" class="btn btn-green">Login</button>
-          <div class="form-footer">
-            <p> Don't have an account? <a routerLink="/register">Sign Up</a></p>
-          </div>
-          </form>
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4">
+      <form class="form-container" #form="ngForm" (ngSubmit)="login(form)">
+        <div class="form-group">
+          <h4 class="text-center font-weight-bold">Login</h4>
+          <label for="inputEmail">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            name="inputEmail"
+            placeholder="Enter valid email"
+            #inputEmail="ngModel"
+            ngModel
+            required
+            email
+          />
+          <ng-container *ngIf="inputEmail.touched">
+            <p class="text-danger" *ngIf="inputEmail.errors?.['required']">
+              Email is required!
+            </p>
+            <p class="text-danger" *ngIf="inputEmail.errors?.['email']">
+              Email is not valid!
+            </p>
+          </ng-container>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="inputPassword">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            name="inputPassword"
+            placeholder="********"
+            #inputPassword="ngModel"
+            ngModel
+            required
+          />
+          <ng-container *ngIf="inputPassword.touched">
+            <p class="text-danger" *ngIf="inputPassword.errors?.['required']">
+              Password is required!
+            </p>
+          </ng-container>
+        </div>
+        <button class="btn btn-green">Login</button>
+        <div class="form-footer">
+          <p>Don't have an account? <a routerLink="/register">Sign Up</a></p>
+        </div>
+      </form>
     </div>
+  </div>
+</div>

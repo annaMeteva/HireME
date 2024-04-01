@@ -1,38 +1,99 @@
 <div class="container-fluid signFormContainer">
-    <div class="row justify-content-center">
-      <div class="col-12 col-sm-6 col-md-4">
-        <form class="form-container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4">
+      <form class="form-container" [formGroup]="form" (ngSubmit)="register()">
         <div class="form-group">
-          <h4 class="text-center font-weight-bold"> Register </h4>
+          <h4 class="text-center font-weight-bold">Register</h4>
           <label for="inputEmail">Email</label>
-           <input type="email" class="form-control" id="inputEmail" placeholder="Enter valid email">
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            name="inputEmail"
+            placeholder="Enter valid email"
+            formControlName="email"
+          />
+          <ng-container *ngIf="form.get('email')?.touched">
+            <p
+              class="text-danger"
+              *ngIf="form.get('email')?.errors?.['required']"
+            >
+              Email is required!
+            </p>
+            <p class="text-danger" *ngIf="form.get('email')?.errors?.['email']">
+              Email is not valid!
+            </p>
+          </ng-container>
         </div>
         <div class="form-group">
-            <label for="inputCompanyName">Company name</label>
-             <input type="text" class="form-control" id="inputCompanyName" placeholder="Enter company name">
+          <label for="inputCompanyName">Company name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCompanyName"
+            name="inputCompanyName"
+            placeholder="Enter company name"
+            formControlName="companyName"
+          />
         </div>
         <div class="form-group">
-            <label for="inputAddress">Company address</label>
-             <input type="text" class="form-control" id="inputAddress" placeholder="Enter company address">
+          <label for="inputPhone">Phone number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputPhone"
+            placeholder="Enter valid phone number"
+            formControlName="phone"
+          />
         </div>
         <div class="form-group">
-            <label for="inputRegnum">Registration number</label>
-             <input type="text" class="form-control" id="inputRegnum" placeholder="Enter valid registration number">
-        </div>
-        <!-- <div class="form-group">
-            <label for="inputEmail">Company Logo</label>
-             <input type="text" class="form-control" id="inputCompany" placeholder="Enter company name">
-          </div> -->
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          <label for="inputAddress">Company address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputAddress"
+            placeholder="Enter company address"
+            formControlName="address"
+          />
         </div>
         <div class="form-group">
-            <label for="inputPassword2">Confirm password</label>
-            <input type="password" class="form-control" id="inputPassword2" placeholder="Confirm password">
+          <label for="inputRegnum">Registration number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputRegNum"
+            placeholder="Enter valid registration number"
+            formControlName="regNum"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputLogo">Company Logo</label>
+          <input type="file" name="inputLogo" accept="image/*" />
+        </div>
+        <ng-container formGroupName="passwordGroup">
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword"
+              placeholder="Password"
+              formControlName="password"
+            />
           </div>
-        <button type="Register" class="btn btn-green">Register</button>
-        </form>
-      </div>
+          <div class="form-group">
+            <label for="inputPassword2">Confirm password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="inputPassword2"
+              placeholder="Confirm password"
+              formControlName="password2"
+            />
+          </div>
+        </ng-container>
+        <button class="btn btn-green">Register</button>
+      </form>
     </div>
   </div>
+</div>
