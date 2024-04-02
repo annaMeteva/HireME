@@ -35,6 +35,14 @@
             placeholder="Enter company name"
             formControlName="companyName"
           />
+          <ng-container *ngIf="form.get('companyName')?.touched">
+            <p
+              class="text-danger"
+              *ngIf="form.get('companyName')?.errors?.['required']"
+            >
+              Company name is required!
+            </p>
+          </ng-container>
         </div>
         <div class="form-group">
           <label for="inputPhone">Phone number</label>
@@ -45,6 +53,14 @@
             placeholder="Enter valid phone number"
             formControlName="phone"
           />
+          <ng-container *ngIf="form.get('phone')?.touched">
+            <p
+              class="text-danger"
+              *ngIf="form.get('phone')?.errors?.['required']"
+            >
+              Phone is required!
+            </p>
+          </ng-container>
         </div>
         <div class="form-group">
           <label for="inputAddress">Company address</label>
@@ -65,10 +81,23 @@
             placeholder="Enter valid registration number"
             formControlName="regNum"
           />
+          <ng-container *ngIf="form.get('regNum')?.touched">
+            <p
+              class="text-danger"
+              *ngIf="form.get('regNum')?.errors?.['required']"
+            >
+              Registration number is required!
+            </p>
+          </ng-container>
         </div>
         <div class="form-group">
           <label for="inputLogo">Company Logo</label>
-          <input type="file" name="inputLogo" accept="image/*" />
+          <input
+            type="file"
+            class="form-control bg-white"
+            name="inputLogo"
+            accept="image/*"
+          />
         </div>
         <ng-container formGroupName="passwordGroup">
           <div class="form-group">
@@ -91,8 +120,26 @@
               formControlName="password2"
             />
           </div>
+          <ng-container *ngIf="passGroup?.get('password2')?.touched">
+            <p
+              class="text-danger"
+              *ngIf="passGroup?.errors?.['matchPasswordsValidator'] || 
+              passGroup?.get('passwordGroup')?.errors?.['required']"
+            >
+              Passwords do not match!
+            </p>
+          </ng-container>
         </ng-container>
-        <button class="btn btn-green">Register</button>
+        <button
+          [disabled]="form.invalid"
+          [style]="{ backgroundColor: form.invalid ? 'grey' : '#00B074' }"
+          class="btn btn-green"
+        >
+          Register
+        </button>
+        <div class="form-footer">
+          <p>Have an account? <a routerLink="/login">Login</a></p>
+        </div>
       </form>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Job } from 'src/app/types/job';
@@ -24,5 +25,9 @@ export class JobDetailComponent implements OnInit {
         this.job = job;
       });
     });
+  }
+
+  apply(form: NgForm) {
+    if (form.invalid) { return; }
   }
 }

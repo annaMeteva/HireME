@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/api.service';
 
 @Component({
@@ -7,22 +8,24 @@ import { ApiService } from 'src/app/api.service';
   styleUrls: ['./create-job.component.css']
 })
 export class CreateJobComponent {
-  constructor(private apiService: ApiService,) {
+  form = this.fb.group({
+    title: ['', [Validators.required]],
+    jobNature: ['Full-time'],
+    location: ['', [Validators.required]],
+    salary1: ['', [Validators.required]],
+    salary2: [''],
+    qualifications: ['', Validators.maxLength(200)],
+    description: ['', Validators.maxLength(200)],
+  });
+  constructor(private apiService: ApiService, private fb: FormBuilder) {
   }
-
-  createJob(ev: Event, inputTitle: string,
-    inputJobNature: string,
-    inputLocation: string,
-    inputSalary1: string,
-    inputSalary2: string,
-    inputQualifications: string,
-    inputDescription: string) {
-    let salary: string = "$" + inputSalary1;
-    if (typeof inputSalary2 != 'undefined' && inputSalary2 != '') {
-      salary += "-$" + inputSalary2;
-    }
-    this.apiService.createJob(inputTitle, inputJobNature, inputLocation, salary, inputQualifications, inputDescription).subscribe((data) => {
-      console.log({ data });
-    })
+  createJob() {
+    // let salary: string = "$" + inputSalary1;
+    // if (typeof inputSalary2 != 'undefined' && inputSalary2 != '') {
+    //   salary += "-$" + inputSalary2;
+    // }
+    // this.apiService.createJob(inputTitle, inputJobNature, inputLocation, salary, inputQualifications, inputDescription).subscribe((data) => {
+    //   console.log({ data });
+    // })
   }
 }

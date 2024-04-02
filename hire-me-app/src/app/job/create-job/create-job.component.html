@@ -3,7 +3,11 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <h1 class="text-center mb-5 wow fadeInUp">Create new job</h1>
-        <form method="post">
+        <form
+          class="form-container"
+          [formGroup]="form"
+          (ngSubmit)="createJob()"
+        >
           <div class="row g-3">
             <div class="col-12 col-sm-6">
               <input
@@ -11,15 +15,25 @@
                 class="form-control"
                 placeholder="Title"
                 id="inputTitle"
-                #inputTitle
+                name="inputTitle"
+                formControlName="title"
               />
+              <ng-container *ngIf="form.get('title')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('title')?.errors?.['required']"
+                >
+                  Title is required!
+                </p>
+              </ng-container>
             </div>
             <div class="col-12 col-sm-6">
               <select
                 class="form-select"
                 aria-label="Job nature"
                 id="inputJobNature"
-                #inputJobNature
+                name="inputJobNature"
+                formControlName="jobNature"
               >
                 <option value="Full-time" selected>Full-time</option>
                 <option value="Part-time">Part-time</option>
@@ -31,7 +45,8 @@
                 class="form-control"
                 placeholder="Location"
                 id="inputLocation"
-                #inputLocation
+                name="inputLocation"
+                formControlName="location"
               />
             </div>
             <div class="col-6 col-sm-3">
@@ -40,8 +55,17 @@
                 class="form-control"
                 placeholder="Min.salary"
                 id="inputSalary1"
-                #inputSalary1
+                name="inputSalary1"
+                formControlName="salary1"
               />
+              <ng-container *ngIf="form.get('salary1')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('salary1')?.errors?.['required']"
+                >
+                  Min.salary is required!
+                </p>
+              </ng-container>
             </div>
             <div class="col-6 col-sm-3">
               <input
@@ -49,7 +73,8 @@
                 class="form-control"
                 placeholder="Max.salary"
                 id="inputSalary2"
-                #inputSalary2
+                name="inputSalary2"
+                formControlName="salary2"
               />
             </div>
             <div class="col-12">
@@ -58,8 +83,18 @@
                 rows="5"
                 placeholder="Qualifications (please separate them with commas)"
                 id="inputQualifications"
-                #inputQualifications
+                name="inputQualifications"
+                formControlName="qualifications"
               ></textarea>
+              <ng-container *ngIf="form.get('qualifications')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('qualifications')?.errors?.['maxlength']"
+                >
+                  The length of Qualifications must 200 characters or fewer. You
+                  entered 200 characters.
+                </p>
+              </ng-container>
             </div>
             <div class="col-12">
               <textarea
@@ -67,25 +102,27 @@
                 rows="5"
                 placeholder="Description"
                 id="inputDescription"
-                #inputDescription
+                name="inputDescription"
+                formControlName="description"
               ></textarea>
+              <ng-container *ngIf="form.get('description')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('description')?.errors?.['maxlength']"
+                >
+                  The length of Description must 200 characters or fewer. You
+                  entered 200 characters.
+                </p>
+              </ng-container>
             </div>
             <div class="row mt-3 justify-content-center">
               <div class="col-5">
                 <button
+                  [disabled]="form.invalid"
+                  [style]="{
+                    backgroundColor: form.invalid ? 'grey' : '#00B074'
+                  }"
                   class="btn btn-green w-100"
-                  (click)="
-                    createJob(
-                      $event,
-                      inputTitle.value,
-                      inputJobNature.value,
-                      inputLocation.value,
-                      inputSalary1.value,
-                      inputSalary2.value,
-                      inputQualifications.value,
-                      inputDescription.value
-                    )
-                  "
                 >
                   Create
                 </button>
