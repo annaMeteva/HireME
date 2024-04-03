@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { matchPasswordsValidator } from 'src/app/shared/utils/match-passwords-validator';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -23,14 +25,32 @@ export class RegisterComponent {
       })
   });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService,
+    private router: Router) { }
 
   get passGroup() {
     return this.form.get('passwordGroup');
   }
-  register(): void {
+
+  register() {
     if (this.form.invalid) {
       return;
     }
+    const {
+      email,
+      companyName,
+      phone,
+      address,
+      regNum,
+      passwordGroup: { password, password2 } = {},
+    } = this.form.value;
+
+    this.userService.register(email!,
+      companyName!,
+      phone!,
+      address!,
+      regNum!, password!, password2!).subscribe(() => {
+        this.router.navigate(['/jobs']);
+      });
   }
 }

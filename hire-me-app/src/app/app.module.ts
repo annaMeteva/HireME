@@ -10,8 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { JobModule } from './job/job.module';
 import { ErrorComponent } from './error/error.component';
-import { UserRoutingModule } from './user/user-routing.module';
-import { JobRoutingModule } from './job/job-routing.module';
+import { appInterceptorProvider } from './app.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,9 +26,9 @@ import { JobRoutingModule } from './job/job-routing.module';
     HttpClientModule,
     UserModule,
     JobModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

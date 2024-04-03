@@ -11,34 +11,34 @@
             id="inputEmail"
             name="inputEmail"
             placeholder="Your email"
-            #inputEmail="ngModel"
+            #email="ngModel"
             ngModel
             required
             email
           />
-          <ng-container *ngIf="inputEmail.touched">
-            <p class="text-danger" *ngIf="inputEmail.errors?.['required']">
+          <ng-container *ngIf="email.touched">
+            <p class="text-danger" *ngIf="email.errors?.['required']">
               Email is required!
             </p>
-            <p class="text-danger" *ngIf="inputEmail.errors?.['email']">
+            <p class="text-danger" *ngIf="email.errors?.['email']">
               Email is not valid!
             </p>
           </ng-container>
         </div>
         <div class="form-group">
-          <label for="inputPassword">Password</label>
+          <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
-            id="inputPassword"
-            name="inputPassword"
+            id="password"
+            name="password"
             placeholder="********"
-            #inputPassword="ngModel"
+            #password="ngModel"
             ngModel
             required
           />
-          <ng-container *ngIf="inputPassword.touched">
-            <p class="text-danger" *ngIf="inputPassword.errors?.['required']">
+          <ng-container *ngIf="password.touched">
+            <p class="text-danger" *ngIf="password.errors?.['required']">
               Password is required!
             </p>
           </ng-container>

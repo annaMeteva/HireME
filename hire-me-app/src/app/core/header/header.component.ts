@@ -11,7 +11,7 @@ export class HeaderComponent {
   constructor(private userService: UserService, private router: Router) { }
 
   get isLoggedIn(): boolean {
-    return this.userService.isLogged;
+    return this.userService.isLoggedIn;
   }
 
   get firstName(): string {
@@ -20,6 +20,6 @@ export class HeaderComponent {
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 }
