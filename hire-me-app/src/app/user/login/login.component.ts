@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +14,20 @@ export class LoginComponent {
   }
 
   login(form: NgForm) {
-    if (form.invalid) { return; }
-
-    const { email, password } = form.value;
-    this.userService.login(email, password).subscribe(() => {
-      this.router.navigate(['/jobs']);
-    });
+    if (form.valid) {
+      const inputEmail = form.value.inputEmail.trim();
+      const password = form.value.password.trim();
+      this.userService.login(inputEmail, password).subscribe({
+        next: (response) => {
+          console.log('Login successful', response);
+          //const userId = response.user_id;
+          this.router.navigate(['/jobs']);
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+        }
+      });
+      console.log('Login data', form.value);
+    }
   }
 }

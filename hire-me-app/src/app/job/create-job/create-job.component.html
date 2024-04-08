@@ -28,18 +28,6 @@
               </ng-container>
             </div>
             <div class="col-12 col-sm-6">
-              <select
-                class="form-select"
-                aria-label="Job nature"
-                id="inputJobNature"
-                name="inputJobNature"
-                formControlName="jobNature"
-              >
-                <option value="Full-time" selected>Full-time</option>
-                <option value="Part-time">Part-time</option>
-              </select>
-            </div>
-            <div class="col-12 col-sm-6">
               <input
                 type="text"
                 class="form-control"
@@ -49,7 +37,57 @@
                 formControlName="location"
               />
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-12 col-sm-6">
+              <select
+                class="form-select"
+                aria-label="Job nature"
+                id="inputJobNature"
+                name="inputJobNature"
+                formControlName="jobNature"
+              >
+                <option value="" disabled selected hidden>
+                  Please select job nature
+                </option>
+                <option value="Full-time" selected>Full-time</option>
+                <option value="Part-time">Part-time</option>
+              </select>
+              <ng-container *ngIf="form.get('jobNature')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('jobNature')?.errors?.['required']"
+                >
+                  Job nature is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <select
+                class="form-select"
+                aria-label="Category"
+                id="inputCategory"
+                name="inputCategory"
+                formControlName="category"
+              >
+                <option value="" disabled selected hidden>
+                  Please select category
+                </option>
+                <option
+                  *ngFor="let c of categories"
+                  [value]="c.category_enum_id"
+                >
+                  {{ c.name }}
+                </option>
+              </select>
+              <ng-container *ngIf="form.get('category')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('category')?.errors?.['required']"
+                >
+                  Category is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
               <input
                 type="number"
                 class="form-control"
@@ -67,7 +105,7 @@
                 </p>
               </ng-container>
             </div>
-            <div class="col-6 col-sm-3">
+            <div class="col-12 col-sm-6">
               <input
                 type="number"
                 class="form-control"

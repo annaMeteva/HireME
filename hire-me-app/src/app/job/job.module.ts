@@ -6,6 +6,7 @@ import { JobRoutingModule } from './job-routing.module';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserModule } from '../user/user.module';
 
 
 

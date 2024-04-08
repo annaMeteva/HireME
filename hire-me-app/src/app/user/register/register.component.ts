@@ -33,24 +33,32 @@ export class RegisterComponent {
   }
 
   register() {
-    if (this.form.invalid) {
-      return;
-    }
-    const {
-      email,
-      companyName,
-      phone,
-      address,
-      regNum,
-      passwordGroup: { password, password2 } = {},
-    } = this.form.value;
+    if (this.form.valid) {
+      const {
+        email,
+        companyName,
+        phone,
+        address,
+        regNum,
+        passwordGroup: { password, password2 } = {},
+      } = this.form.value;
 
-    this.userService.register(email!,
-      companyName!,
-      phone!,
-      address!,
-      regNum!, password!, password2!).subscribe(() => {
-        this.router.navigate(['/jobs']);
-      });
+      this.userService.register(email!,
+        companyName!.trim(),
+        phone!.trim(),
+        address!.trim(),
+        regNum!.trim(), password!.trim(), password2!.trim()).subscribe({
+          next: (response) => {
+            this.router.navigate(['/jobs']);
+            console.log('Register successful', response);
+          },
+          error: (error) => {
+            console.error('Registration failed', error);
+          }
+        });
+      console.log('Register data', this.form.value);
+    } else {
+      console.log('Form is not valid');
+    }
   }
 }

@@ -27,12 +27,12 @@ export class UserService implements OnDestroy {
   private loadUserFromLocalStorage(): void {
     const accessToken = localStorage.getItem('accessToken');
     const email = localStorage.getItem('email');
-    const name = localStorage.getItem('name');
-    const user_id = localStorage.getItem('userId');
+    const companyName = localStorage.getItem('companyName');
+    const user_id = localStorage.getItem('user_id');
 
-    if (accessToken && email && name && user_id) {
+    if (accessToken && email && companyName && user_id) {
 
-      this.user$$.next({ email, companyName: name, user_id, accessToken });
+      this.user$$.next({ email, companyName: companyName, user_id, accessToken });
 
     } else {
       this.user$$.next(undefined);
@@ -45,16 +45,16 @@ export class UserService implements OnDestroy {
     regNum: string,
     password: string,
     password2: string) {
-    return this.http.post<{ email: string, name: string, user_id: string, accessToken: string }>('/api/users/register', { email, companyName, phone, address, regNum, password, password2 }).pipe(
+    return this.http.post<{ email: string, companyName: string, user_id: string, accessToken: string }>('/api/users/register', { email, companyName, phone, address, regNum, password, password2 }).pipe(
       tap(res => {
         localStorage.setItem('accessToken', res.accessToken);
 
         localStorage.setItem('email', res.email);
-        localStorage.setItem('name', res.name);
-        localStorage.setItem('userId', res.user_id);
+        localStorage.setItem('companyName', res.companyName);
+        localStorage.setItem('user_id', res.user_id);
         this.user$$.next({
           email: res.email,
-          companyName: res.name,
+          companyName: res.companyName,
           user_id: res.user_id,
           accessToken: res.accessToken
         });
@@ -62,16 +62,17 @@ export class UserService implements OnDestroy {
   }
 
   login(email: string, password: string) {
-    return this.http.post<{ email: string, name: string, user_id: string, accessToken: string }>('/api/users/login', { email, password }).pipe(
+    console.log(email, password)
+    return this.http.post<{ email: string, companyName: string, user_id: string, accessToken: string }>('/api/users/login', { email, password }).pipe(
       tap(res => {
         localStorage.setItem('accessToken', res.accessToken);
 
         localStorage.setItem('email', res.email);
-        localStorage.setItem('name', res.name);
-        localStorage.setItem('userId', res.user_id);
+        localStorage.setItem('companyName', res.companyName);
+        localStorage.setItem('user_id', res.user_id);
         this.user$$.next({
           email: res.email,
-          companyName: res.name,
+          companyName: res.companyName,
           user_id: res.user_id,
           accessToken: res.accessToken
         });
@@ -80,12 +81,14 @@ export class UserService implements OnDestroy {
   }
 
   logout() {
-    return this.http.get('/api/users/logout', {})
-      .pipe(tap(() => {
-        localStorage.clear();
-        console.log("hete")
-        this.user$$.next(undefined);
-      }));
+    return this.http
+      .get('/api/users/logout', {})
+      .pipe(tap(() => this.user$$.next(undefined)));
+
+    // return this.http.post<UserForAuth>('/api/users/logout', {}).pipe(tap(() => {
+    //   localStorage.clear();
+    //   this.user$$.next(undefined);
+    // }));
   }
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();

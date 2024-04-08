@@ -12,19 +12,23 @@ export class ApiService {
 
   getCategories() {
     const { apiUrl } = environment;
-    return this.http.get<Category[]>(`${apiUrl}/jsonstore/collections/categories`);
+    return this.http.get<Category[]>(`${apiUrl}/data/categories`);
   }
   getJobs() {
     const { apiUrl } = environment;
-    return this.http.get<Job[]>(`${apiUrl}/jsonstore/collections/jobs`);
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs`);
   }
   getJob(id: string) {
     const { apiUrl } = environment;
-    return this.http.get<Job>(`${apiUrl}/jsonstore/collections/jobs/${id}`);
+    return this.http.get<Job>(`${apiUrl}/data/jobs/${id}`);
   }
-  createJob(title: string, jobNature: string, location: string, salary: string, qualifications: string, description: string) {
+  createJob(title: string, job_nature: string, location: string, salary: string, qualifications: string, description: string) {
     const { apiUrl } = environment;
-    const payload = { title, jobNature, location, salary, qualifications, description };
-    return this.http.post<Job>(`${apiUrl}/jsonstore/collections/jobs`, payload);
+    const payload = { title, job_nature, location, salary, qualifications, description };
+    return this.http.post<Job>(`${apiUrl}/data/jobs`, payload);
+  }
+  deleteJob(id: string) {
+    const { apiUrl } = environment;
+    return this.http.delete<Job>(`${apiUrl}/data/jobs/${id}`);
   }
 }

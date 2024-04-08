@@ -31,13 +31,13 @@
           <p>{{ job.description }}</p>
           <h4 class="mb-3">Qualifications</h4>
           <ul class="list-unstyled">
-            <li *ngFor="let q of job.qualifications">
-              <i class="fa fa-angle-right text-green me-2"></i>q
+            <li *ngFor="let q of job.qualifications.split(', ')">
+              <i class="fa fa-angle-right text-green me-2"></i>{{ q }}
             </li>
           </ul>
         </div>
 
-        <div class="">
+        <div *ngIf="!isLoggedIn" class="applyForm">
           <h4 class="mb-4">Apply For The Job</h4>
           <form class="form-container" #form="ngForm" (ngSubmit)="apply(form)">
             <div class="row g-3">
@@ -137,6 +137,11 @@
             </div>
           </form>
         </div>
+        <div *ngIf="isLoggedIn">
+          <button class="btn btn-danger" (click)="deleteJob(job._id!)">
+            Delete job
+          </button>
+        </div>
       </div>
 
       <div class="col-lg-4">
@@ -147,7 +152,7 @@
           <h4 class="mb-4">Job Summery</h4>
           <p>
             <i class="fa fa-angle-right text-green me-2"></i>Published On:
-            {{ job.created_on }}
+            {{ job._createdOn }}
           </p>
           <p>
             <i class="fa fa-angle-right text-green me-2"></i>Job Nature:
