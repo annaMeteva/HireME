@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { UserForAuth } from '../types/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
 @Injectable({
@@ -16,7 +16,9 @@ export class UserService implements OnDestroy {
   get isLoggedIn(): boolean {
     return !!this.user;
   }
-
+  get getCurUserEmail(): string {
+    return this.user?.email || "";
+  }
   constructor(private http: HttpClient) {
     this.loadUserFromLocalStorage();
     this.userSubscription = this.user$.subscribe((user) => {
@@ -28,11 +30,11 @@ export class UserService implements OnDestroy {
     const accessToken = localStorage.getItem('accessToken');
     const email = localStorage.getItem('email');
     const companyName = localStorage.getItem('companyName');
-    const user_id = localStorage.getItem('user_id');
+    const _id = localStorage.getItem('_id');
 
-    if (accessToken && email && companyName && user_id) {
+    if (accessToken && email && companyName && _id) {
 
-      this.user$$.next({ email, companyName: companyName, user_id, accessToken });
+      this.user$$.next({ email, companyName: companyName, _id, accessToken });
 
     } else {
       this.user$$.next(undefined);
@@ -45,35 +47,33 @@ export class UserService implements OnDestroy {
     regNum: string,
     password: string,
     password2: string) {
-    return this.http.post<{ email: string, companyName: string, user_id: string, accessToken: string }>('/api/users/register', { email, companyName, phone, address, regNum, password, password2 }).pipe(
+    return this.http.post<{ email: string, companyName: string, _id: string, accessToken: string }>('/api/users/register', { email, companyName, phone, address, regNum, password, password2 }).pipe(
       tap(res => {
         localStorage.setItem('accessToken', res.accessToken);
 
         localStorage.setItem('email', res.email);
         localStorage.setItem('companyName', res.companyName);
-        localStorage.setItem('user_id', res.user_id);
+        localStorage.setItem('_id', res._id);
         this.user$$.next({
           email: res.email,
           companyName: res.companyName,
-          user_id: res.user_id,
+          _id: res._id,
           accessToken: res.accessToken
         });
       }))
   }
 
   login(email: string, password: string) {
-    console.log(email, password)
-    return this.http.post<{ email: string, companyName: string, user_id: string, accessToken: string }>('/api/users/login', { email, password }).pipe(
+    return this.http.post<{ email: string, companyName: string, _id: string, accessToken: string }>('/api/users/login', { email, password }).pipe(
       tap(res => {
         localStorage.setItem('accessToken', res.accessToken);
-
         localStorage.setItem('email', res.email);
         localStorage.setItem('companyName', res.companyName);
-        localStorage.setItem('user_id', res.user_id);
+        localStorage.setItem('_id', res._id);
         this.user$$.next({
           email: res.email,
           companyName: res.companyName,
-          user_id: res.user_id,
+          _id: res._id,
           accessToken: res.accessToken
         });
       })
@@ -83,12 +83,13 @@ export class UserService implements OnDestroy {
   logout() {
     return this.http
       .get('/api/users/logout', {})
-      .pipe(tap(() => this.user$$.next(undefined)));
-
-    // return this.http.post<UserForAuth>('/api/users/logout', {}).pipe(tap(() => {
-    //   localStorage.clear();
-    //   this.user$$.next(undefined);
-    // }));
+    // .pipe(tap((response) => {
+    //   if (response.status === 204 && !response.headers.has('Content-Type')) {
+    //   localStorage.removeItem(this.key)
+    //   } else {
+    //   throw response
+    //   }
+    //   }));
   }
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();

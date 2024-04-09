@@ -132,6 +132,12 @@
                   The length of Qualifications must 200 characters or fewer. You
                   entered 200 characters.
                 </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('qualifications')?.errors?.['required']"
+                >
+                  Qualifications is required.
+                </p>
               </ng-container>
             </div>
             <div class="col-12">
@@ -150,6 +156,12 @@
                 >
                   The length of Description must 200 characters or fewer. You
                   entered 200 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('description')?.errors?.['required']"
+                >
+                  Description is required!
                 </p>
               </ng-container>
             </div>

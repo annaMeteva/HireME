@@ -44,19 +44,24 @@ export class AppInterceptor implements HttpInterceptor {
                 }
             });
         }
-        return next.handle(req);
-        // return next.handle(req).pipe(
-        //     catchError((err) => {
-        //         if (err.status === 401) {
-        //             this.router.navigate(['/auth/login']);
-        //         } else {
-        //             this.errorService.setError(err);
-        //             this.router.navigate(['/error']);
-        //         }
+        return next.handle(req).pipe(
+            catchError((err) => {
+                if (err.status === 401) {
+                    this.router.navigate(['/auth/login']);
+                } if (err.status === 403) {
+                    localStorage.clear();
+                    this.router.navigate(['/']);
+                }
+                if (err.status === 404) {
+                    this.router.navigate(['/']);
+                } else {
+                    this.errorService.setError(err);
+                    this.router.navigate(['/error']);
+                }
 
-        //         return [err];
-        //     })
-        // );
+                return [err];
+            })
+        );
     }
 }
 

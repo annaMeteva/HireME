@@ -12,6 +12,7 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class JobDetailComponent implements OnInit {
   job = {} as Job;
+  userEmail: string = "";
 
   constructor(
     private apiService: ApiService,
@@ -42,8 +43,5 @@ export class JobDetailComponent implements OnInit {
         console.error('Delete job failed', error);
       }
     })
-  }
-  apply(form: NgForm) {
-    if (form.invalid) { return; }
   }
 }

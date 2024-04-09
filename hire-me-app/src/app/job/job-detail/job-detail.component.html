@@ -25,119 +25,21 @@
             >
           </div>
         </div>
-
         <div class="mb-5">
           <h4 class="mb-3">Job description</h4>
           <p>{{ job.description }}</p>
           <h4 class="mb-3">Qualifications</h4>
-          <ul class="list-unstyled">
-            <li *ngFor="let q of job.qualifications.split(', ')">
-              <i class="fa fa-angle-right text-green me-2"></i>{{ q }}
-            </li>
-          </ul>
+          <p>{{ job.qualifications }}</p>
         </div>
-
-        <div *ngIf="!isLoggedIn" class="applyForm">
-          <h4 class="mb-4">Apply For The Job</h4>
-          <form class="form-container" #form="ngForm" (ngSubmit)="apply(form)">
-            <div class="row g-3">
-              <div class="col-12 col-sm-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Your name"
-                  id="inputName"
-                  name="inputName"
-                  #inputName="ngModel"
-                  ngModel
-                  required
-                />
-                <ng-container *ngIf="inputName.touched">
-                  <p class="text-danger" *ngIf="inputName.errors?.['required']">
-                    Name is required!
-                  </p>
-                </ng-container>
-              </div>
-              <div class="col-12 col-sm-6">
-                <input
-                  type="email"
-                  id="inputEmail"
-                  name="inputEmail"
-                  class="form-control"
-                  placeholder="Your email"
-                  #inputEmail="ngModel"
-                  ngModel
-                  required
-                  email
-                />
-                <ng-container *ngIf="inputEmail.touched">
-                  <p
-                    class="text-danger"
-                    *ngIf="inputEmail.errors?.['required']"
-                  >
-                    Email is required!
-                  </p>
-                  <p class="text-danger" *ngIf="inputEmail.errors?.['email']">
-                    Email is not valid!
-                  </p>
-                </ng-container>
-              </div>
-              <div class="col-12 col-sm-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Portfolio website"
-                  id="inputPortfolio"
-                  name="inputPortfolio"
-                  #inputPortfolio="ngModel"
-                  ngModel
-                />
-              </div>
-              <div class="col-12 col-sm-6">
-                <input type="file" class="form-control bg-white" />
-              </div>
-              <div class="col-12">
-                <textarea
-                  class="form-control"
-                  rows="5"
-                  placeholder="Coverletter"
-                  id="inputCoverletter"
-                  name="inputCoverletter"
-                  #inputCoverletter="ngModel"
-                  ngModel
-                  required
-                  maxlength="300"
-                ></textarea>
-                <ng-container *ngIf="inputCoverletter.touched">
-                  <p
-                    class="text-danger"
-                    *ngIf="inputCoverletter.errors?.['required']"
-                  >
-                    Coverletter is required!
-                  </p>
-                  <p
-                    class="text-danger"
-                    *ngIf="inputCoverletter.errors?.['maxlength']"
-                  >
-                    Coverletter is not valid!
-                  </p>
-                </ng-container>
-              </div>
-              <div class="col-12">
-                <button
-                  [disabled]="form.invalid"
-                  [style]="{
-                    backgroundColor: form.invalid ? 'grey' : '#00B074'
-                  }"
-                  class="btn btn-green w-100"
-                >
-                  Apply now
-                </button>
-              </div>
-            </div>
-          </form>
+        <div *ngIf="!isLoggedIn">
+          <a [href]="'mailto:' + job._ownerEmail" class="btn btn-green"
+            >Apply Now</a
+          >
         </div>
         <div *ngIf="isLoggedIn">
+          <a [routerLink]="'edit/' + job._id" class="btn btn-green me-1">
+            Edit job
+          </a>
           <button class="btn btn-danger" (click)="deleteJob(job._id!)">
             Delete job
           </button>
@@ -152,7 +54,7 @@
           <h4 class="mb-4">Job Summery</h4>
           <p>
             <i class="fa fa-angle-right text-green me-2"></i>Published On:
-            {{ job._createdOn }}
+            {{ job._createdOn | date : "dd/MM/yyyy hh:mma" }}
           </p>
           <p>
             <i class="fa fa-angle-right text-green me-2"></i>Job Nature:

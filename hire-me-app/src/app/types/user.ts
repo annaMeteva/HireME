@@ -1,5 +1,5 @@
 export interface UserForAuth {
-    user_id?: string,
+    _id?: string,
     email: string;
     companyName: string;
     phoneNumber?: string;

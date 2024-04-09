@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { salaryConcat } from 'src/app/shared/utils/salaryConcat';
 import { Category } from 'src/app/types/category';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-create-job',
@@ -20,10 +21,10 @@ export class CreateJobComponent implements OnInit {
     category: ['', Validators.required],
     salary1: ['', [Validators.required]],
     salary2: [''],
-    qualifications: ['', Validators.maxLength(200)],
-    description: ['', Validators.maxLength(200)],
+    qualifications: ['', Validators.maxLength(200), Validators.required],
+    description: ['', Validators.maxLength(200), Validators.required],
   });
-  constructor(private apiService: ApiService, private fb: FormBuilder, private router: Router) {
+  constructor(private apiService: ApiService, private fb: FormBuilder, private router: Router, private userService: UserService) {
   }
   ngOnInit(): void {
     this.apiService.getCategories().subscribe((categories) => {
@@ -44,7 +45,7 @@ export class CreateJobComponent implements OnInit {
       description,
     } = this.form.value;
     const salary = salaryConcat(salary1!, salary2 || '');
-    this.apiService.createJob(title!.trim(), jobNature!, location!.trim(), salary!, qualifications!.trim(), description!.trim()).subscribe({
+    this.apiService.createJob(title!.trim(), jobNature!, location!.trim(), salary!, qualifications!.trim(), description!.trim(), this.userService.getCurUserEmail).subscribe({
       next: (response) => {
         this.router.navigate(['/jobs']);
         console.log('Create job successful', response);
@@ -52,6 +53,6 @@ export class CreateJobComponent implements OnInit {
       error: (error) => {
         console.error('Create job failed', error);
       }
-    })
+    });
   }
 }
