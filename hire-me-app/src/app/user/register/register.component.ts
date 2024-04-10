@@ -13,7 +13,7 @@ export class RegisterComponent {
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     companyName: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required]],
     address: [''],
     regNum: ['', [Validators.required, Validators.pattern("")]],
     passwordGroup: this.fb.group({
@@ -37,7 +37,7 @@ export class RegisterComponent {
       const {
         email,
         companyName,
-        phone,
+        phoneNumber,
         address,
         regNum,
         passwordGroup: { password, password2 } = {},
@@ -45,7 +45,7 @@ export class RegisterComponent {
 
       this.userService.register(email!,
         companyName!.trim(),
-        phone!.trim(),
+        phoneNumber!.trim(),
         address!.trim(),
         regNum!.trim(), password!.trim(), password2!.trim()).subscribe({
           next: (response) => {

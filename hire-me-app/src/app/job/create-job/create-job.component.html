@@ -71,10 +71,7 @@
                 <option value="" disabled selected hidden>
                   Please select category
                 </option>
-                <option
-                  *ngFor="let c of categories"
-                  [value]="c.category_enum_id"
-                >
+                <option *ngFor="let c of categories" [value]="c.category_id">
                   {{ c.name }}
                 </option>
               </select>

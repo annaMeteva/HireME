@@ -19,13 +19,21 @@ export class ApiService {
     const { apiUrl } = environment;
     return this.http.get<Job[]>(`${apiUrl}/data/jobs`);
   }
+  getJobsByOwner(id: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=_ownerId%3D%22` + id + '%22');
+  }
+  getJobsByCategoryId(id: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=category_id%3D%22` + id + '%22');
+  }
   getJob(id: string) {
     const { apiUrl } = environment;
     return this.http.get<Job>(`${apiUrl}/data/jobs/${id}`);
   }
-  createJob(title: string, job_nature: string, location: string, salary: string, qualifications: string, description: string, _ownerEmail: string) {
+  createJob(title: string, job_nature: string, category_id: string, location: string, salary: string, qualifications: string, description: string, _ownerEmail: string) {
     const { apiUrl } = environment;
-    const payload = { title, job_nature, location, salary, qualifications, description, _ownerEmail };
+    const payload = { title, job_nature, category_id, location, salary, qualifications, description, _ownerEmail };
     return this.http.post<Job>(`${apiUrl}/data/jobs`, payload);
   }
   deleteJob(id: string) {
@@ -41,5 +49,9 @@ export class ApiService {
   getApplies(id: string) {
     const { apiUrl } = environment;
     return this.http.get<Apply[]>(`${apiUrl}/data/applies`);
+  }
+  getAppliesByOwner(id: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Apply[]>(`${apiUrl}/data/applies?where=_ownerId%3D%22` + id + '%22');
   }
 }

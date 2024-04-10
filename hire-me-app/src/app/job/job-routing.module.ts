@@ -13,7 +13,8 @@ const routes: Routes = [
         path: 'jobs',
         children: [
             { path: '', pathMatch: 'full', component: JobsListComponent },
-            { path: ':jobId', component: JobDetailComponent }
+            // { path: ':categoryId', component: JobsListComponent },
+            { path: ':jobId', component: JobDetailComponent },
         ],
     },
     {
@@ -22,7 +23,8 @@ const routes: Routes = [
         canActivate: [AuthActivate],
     },
     {
-        path: 'edit/:jobId', component: EditJobComponent
+        path: 'edit/:jobId', component: EditJobComponent,
+        canActivate: [AuthActivate]
     },
     {
         path: 'create-apply/:jobId', component: JobApplyFormComponent,

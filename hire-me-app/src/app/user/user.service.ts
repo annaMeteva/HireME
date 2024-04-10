@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { UserForAuth } from '../types/user';
+import { ProfileDetails, User, UserForAuth } from '../types/user';
 import { HttpClient, HttpHeaderResponse, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject, Subscription, tap } from 'rxjs';
 
@@ -40,14 +40,32 @@ export class UserService implements OnDestroy {
       this.user$$.next(undefined);
     }
   }
+  getProfileDetails() {
+    return this.http.get<ProfileDetails>('/api/users/me');
+  }
+  updateProfile(email: string,
+    companyName: string,
+    phoneNumber: string,
+    address: string,
+    regNum: string) {
+    return this.http
+      .put<UserForAuth>('/api/users/me', {
+        email,
+        companyName,
+        phoneNumber,
+        address,
+        regNum
+      })
+      .pipe(tap((user) => this.user$$.next(user)));
+  }
   register(email: string,
     companyName: string,
-    phone: string,
+    phoneNumber: string,
     address: string,
     regNum: string,
     password: string,
     password2: string) {
-    return this.http.post<{ email: string, companyName: string, _id: string, accessToken: string }>('/api/users/register', { email, companyName, phone, address, regNum, password, password2 }).pipe(
+    return this.http.post<{ email: string, companyName: string, _id: string, accessToken: string }>('/api/users/register', { email, companyName, phoneNumber, address, regNum, password, password2 }).pipe(
       tap(res => {
         localStorage.setItem('accessToken', res.accessToken);
 

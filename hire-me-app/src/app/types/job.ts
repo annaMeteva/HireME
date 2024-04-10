@@ -1,6 +1,6 @@
 export interface Job {
     _id: string;
-    _categoryId: string;
+    category_id: string;
     _createdOn: Date;
     description: string;
     job_nature: string;

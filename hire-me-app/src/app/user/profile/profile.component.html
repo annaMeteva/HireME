@@ -1,1 +1,138 @@
-<p>profile works!</p>
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <img
+            class="rounded-circle mt-5"
+            width="150px"
+            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+          /><span class="font-weight-bold">Hello, name</span
+          ><span class="text-black-50"></span><span> </span>
+        </div>
+      </div>
+      <div class="col-md-9 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="text-right wow fadeInUp">Profile Settings</h3>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="saveProfileHandle()">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Company name</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  name="companyName"
+                  id="companyName"
+                  [value]="profileDetails.companyName"
+                  formControlName="companyName"
+                />
+                <ng-container *ngIf="form.get('companyName')?.touched">
+                  <p
+                    class="text-danger"
+                    *ngIf="form.get('companyName')?.errors?.['required']"
+                  >
+                    Company name is required!
+                  </p>
+                </ng-container>
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Email</label
+                ><input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  [value]="profileDetails.email"
+                  formControlName="email"
+                />
+                <ng-container *ngIf="form.get('email')?.touched">
+                  <p
+                    class="text-danger"
+                    *ngIf="form.get('email')?.errors?.['required']"
+                  >
+                    Email is required!
+                  </p>
+                  <p
+                    class="text-danger"
+                    *ngIf="form.get('email')?.errors?.['email']"
+                  >
+                    Email is not valid!
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Company address</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  name="address"
+                  id="address"
+                  [value]="profileDetails.address"
+                  formControlName="address"
+                />
+                <ng-container *ngIf="form.get('address')?.touched">
+                  <p
+                    class="text-danger"
+                    *ngIf="form.get('address')?.errors?.['required']"
+                  >
+                    Address name is required!
+                  </p>
+                </ng-container>
+              </div>
+              <div class="col-md-6">
+                <label class="labels">Phone number</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  [value]="profileDetails.phoneNumber"
+                  formControlName="phoneNumber"
+                />
+                <ng-container *ngIf="form.get('phoneNumber')?.touched">
+                  <p
+                    class="text-danger"
+                    *ngIf="form.get('phoneNumber')?.errors?.['required']"
+                  >
+                    Phone number name is required!
+                  </p>
+                </ng-container>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <label class="labels">Registration number</label
+                ><input
+                  type="text"
+                  class="form-control"
+                  name="regNum"
+                  id="regNum"
+                  [value]="profileDetails.regNum"
+                  formControlName="regNum"
+                />
+              </div>
+              <div class="col-md-6">
+                <label for="inputLogo">Company Logo</label>
+                <input
+                  type="file"
+                  class="form-control bg-white"
+                  name="inputLogo"
+                  accept="image/*"
+                />
+              </div>
+            </div>
+            <div class="mt-5 text-center">
+              <button class="btn btn-green profile-button" type="button">
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

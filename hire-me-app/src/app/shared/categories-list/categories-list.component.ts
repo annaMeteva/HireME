@@ -16,9 +16,6 @@ export class CategoriesListComponent implements OnInit {
   ngOnInit(): void {
     this.api.getCategories().subscribe((categories) => {
       this.categories = categories;
-      // setTimeout(() => {
-      //   this.isLoading = false;
-      // }, 1000);
     });
   }
 }

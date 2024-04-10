@@ -1,86 +1,44 @@
 {
   "categories": [
     {
-      "category_id": 0,
+      "category_id": "0",
       "icon": "fa-mail-bulk",
       "name": "Marketing"
     },
     {
-      "category_id": 1,
+      "category_id": "1",
       "icon": "fa-headset",
       "name": "Customer Service"
     },
     {
-      "category_id": 2,
+      "category_id": "2",
       "icon": "fa-user-tie",
       "name": "Human Resource"
     },
     {
-      "category_id": 3,
+      "category_id": "3",
       "icon": "fa-tasks",
       "name": "Project Management"
     },
     {
-      "category_id": 4,
+      "category_id": "4",
       "icon": "fa-chart-line",
       "name": "Business development"
     },
     {
-      "category_id": 5,
+      "category_id": "5",
       "icon": "fa-hands-helping",
       "name": "Sales and Communication"
     },
     {
-      "category_id": 6,
+      "category_id": "6",
       "icon": "fa-book-reader",
       "name": "Teaching and Education"
     },
     {
-      "category_id": 7,
+      "category_id": "7",
       "icon": "fa-drafting-compass",
       "name": "Design and Creative"
-    }
-  ],
-  "companies": [
-   {
-      "address": "Lazurna 6, Gabrovo, Bulgaria",
-      "name": "Test Company",
-      "reg_num": 123456789,
-      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
-    }
-  ],
-  "jobs": [
-    {
-      "category_id": 0,
-      "created_on": "Mar 29, 2024",
-      "description": "Dolor justo tempor duo ipsum accusam rebum gubergren erat. Elitr stet dolor vero clita labore gubergren. Kasd sed ipsum elitr clita rebum ut sea diam tempor. Sadipscing nonumy vero labore invidunt dolor sed, eirmod dolore amet aliquyam consetetur lorem, amet elitr clita et sed consetetur dolore accusam.",
-      "job_id": "0",
-      "job_nature": "Full-time",
-      "location": "Gabrovo, Bulgaria",
-      "qualifications": [
-        "Rebum vero dolores dolores elitr",
-        "Elitr stet dolor vero clita labore gubergren",
-        "Dolor justo tempor duo ipsum accusam"
-      ],
-      "salary": "$1500-$1900",
-      "title": "Marketing manager",
-      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
-    },
-   {
-      "category_id": 7,
-      "created_on": "Mar 20, 2024",
-      "description": "Dolor justo tempor duo ipsum accusam rebum gubergren erat. Elitr stet dolor vero clita labore gubergren. Kasd sed ipsum elitr clita rebum ut sea diam tempor. Sadipscing nonumy vero labore invidunt dolor sed, eirmod dolore amet aliquyam consetetur lorem, amet elitr clita et sed consetetur dolore accusam.",
-      "job_id": "1",
-      "job_nature": "Part-time",
-      "location": "Gabrovo, Bulgaria",
-      "qualifications": [
-        "Rebum vero dolores dolores elitr",
-        "Elitr stet dolor vero clita labore gubergren",
-        "Dolor justo tempor duo ipsum accusam"
-      ],
-      "salary": "$500",
-      "title": "Creative Director",
-      "user_id": "qDDuvTWL00N2sNXPhMy2rE0ZB8w2"
     }
   ]
 }

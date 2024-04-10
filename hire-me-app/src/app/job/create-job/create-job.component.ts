@@ -21,8 +21,8 @@ export class CreateJobComponent implements OnInit {
     category: ['', Validators.required],
     salary1: ['', [Validators.required]],
     salary2: [''],
-    qualifications: ['', Validators.maxLength(200), Validators.required],
-    description: ['', Validators.maxLength(200), Validators.required],
+    qualifications: ['', [Validators.maxLength(200), Validators.required]],
+    description: ['', [Validators.maxLength(200), Validators.required]],
   });
   constructor(private apiService: ApiService, private fb: FormBuilder, private router: Router, private userService: UserService) {
   }
@@ -38,6 +38,7 @@ export class CreateJobComponent implements OnInit {
     const {
       title,
       jobNature,
+      category,
       location,
       salary1,
       salary2,
@@ -45,7 +46,7 @@ export class CreateJobComponent implements OnInit {
       description,
     } = this.form.value;
     const salary = salaryConcat(salary1!, salary2 || '');
-    this.apiService.createJob(title!.trim(), jobNature!, location!.trim(), salary!, qualifications!.trim(), description!.trim(), this.userService.getCurUserEmail).subscribe({
+    this.apiService.createJob(title!.trim(), jobNature!, category!.toString(), location!.trim(), salary!, qualifications!.trim(), description!.trim(), this.userService.getCurUserEmail).subscribe({
       next: (response) => {
         this.router.navigate(['/jobs']);
         console.log('Create job successful', response);
