@@ -37,12 +37,21 @@
           >
         </div>
         <div *ngIf="isLoggedIn">
-          <a [routerLink]="'edit/' + job._id" class="btn btn-green me-1">
-            Edit job
-          </a>
           <button class="btn btn-danger" (click)="deleteJob(job._id!)">
             Delete job
           </button>
+          <a
+            [routerLink]="'../../edit-job/' + job._id"
+            class="btn btn-warning ms-1"
+          >
+            Edit job
+          </a>
+          <a
+            [routerLink]="'../../applies/' + job._id"
+            class="btn btn-green ms-1"
+          >
+            Job applies
+          </a>
         </div>
       </div>
 
@@ -67,16 +76,6 @@
           <p>
             <i class="fa fa-angle-right text-green me-2"></i>Location:
             {{ job.location }}
-          </p>
-        </div>
-        <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
-          <h4 class="mb-4">Company Detail</h4>
-          <p class="m-0">
-            Ipsum dolor ipsum accusam stet et et diam dolores, sed rebum
-            sadipscing elitr vero dolores. Lorem dolore elitr justo et no
-            gubergren sadipscing, ipsum et takimata aliquyam et rebum est ipsum
-            lorem diam. Et lorem magna eirmod est et et sanctus et, kasd clita
-            labore.
           </p>
         </div>
       </div>

@@ -17,7 +17,7 @@ export class ApiService {
   }
   getJobs() {
     const { apiUrl } = environment;
-    return this.http.get<Job[]>(`${apiUrl}/data/jobs`);
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs?sortBy=_createdOn%20desc`);
   }
   getJobsByOwner(id: string) {
     const { apiUrl } = environment;
@@ -35,6 +35,11 @@ export class ApiService {
     const { apiUrl } = environment;
     const payload = { title, job_nature, category_id, location, salary, qualifications, description, _ownerEmail };
     return this.http.post<Job>(`${apiUrl}/data/jobs`, payload);
+  }
+  updateJob(id: string, title: string, job_nature: string, category_id: string, location: string, salary: string, qualifications: string, description: string) {
+    const { apiUrl } = environment;
+    const payload = { title, job_nature, category_id, location, salary, qualifications, description };
+    return this.http.put<Job>(`${apiUrl}/data/jobs/` + id, payload);
   }
   deleteJob(id: string) {
     const { apiUrl } = environment;

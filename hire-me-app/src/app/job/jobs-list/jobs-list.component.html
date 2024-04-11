@@ -46,12 +46,14 @@
             class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center"
           >
             <div *ngIf="!isLoggedIn" class="d-flex mb-3">
-              <a class="btn btn-green" [routerLink]="job._id">View job</a>
+              <a class="btn btn-green" (click)="navigateToJobDetails(job._id)"
+                >View job</a
+              >
             </div>
             <div *ngIf="isLoggedIn" class="d-flex mb-3">
               <a class="btn btn-green me-1" [routerLink]="job._id">View job</a>
-              <a class="btn btn-green" [routerLink]="'/applies/' + job._id"
-                >View candidates</a
+              <a class="btn btn-green" [routerLink]="'/apply/' + job._id"
+                >Add apply</a
               >
             </div>
             <small class="text-truncate"
@@ -61,9 +63,11 @@
           </div>
         </div>
       </div>
-      <a class="btn btn-green py-3 px-5" routerLink="/create-job"
-        >Add more jobs</a
-      >
+      <div *ngIf="isLoggedIn">
+        <a class="btn btn-green py-3 px-5" routerLink="/create-job"
+          >Add more jobs</a
+        >
+      </div>
     </div>
   </div>
 </div>

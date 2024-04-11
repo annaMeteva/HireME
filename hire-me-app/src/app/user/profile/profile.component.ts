@@ -16,13 +16,13 @@ export class ProfileComponent implements OnInit {
     address: "",
     regNum: ""
   }
-  form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    companyName: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required]],
-    address: ['', [Validators.required]],
-    regNum: [{ value: '', disabled: true }, [Validators.required]],
-  });
+  // form = this.fb.group({
+  //   email: ['', [Validators.required, Validators.email]],
+  //   companyName: ['', [Validators.required]],
+  //   phoneNumber: ['', [Validators.required]],
+  //   address: ['', [Validators.required]],
+  //   regNum: [{ value: '', disabled: true }, [Validators.required]],
+  // });
 
   constructor(private fb: FormBuilder, private userService: UserService) { }
 
@@ -30,34 +30,34 @@ export class ProfileComponent implements OnInit {
 
     this.userService.getProfileDetails().subscribe((d) => {
       this.profileDetails = d;
-      this.form.setValue({
-        email: this.profileDetails.email,
-        companyName: this.profileDetails.companyName,
-        phoneNumber: this.profileDetails.phoneNumber,
-        address: this.profileDetails.address,
-        regNum: this.profileDetails.regNum
-      });
+      // this.form.setValue({
+      //   email: this.profileDetails.email,
+      //   companyName: this.profileDetails.companyName,
+      //   phoneNumber: this.profileDetails.phoneNumber,
+      //   address: this.profileDetails.address,
+      //   regNum: this.profileDetails.regNum
+      // });
     });
   }
-  saveProfileHandle(): void {
-    if (this.form.invalid) {
-      return;
-    }
+  // saveProfileHandle(): void {
+  //   if (this.form.invalid) {
+  //     return;
+  //   }
 
-    this.profileDetails = this.form.value as ProfileDetails;
-    const { email,
-      companyName,
-      phoneNumber,
-      address,
-      regNum } = this.profileDetails;
+  //   this.profileDetails = this.form.value as ProfileDetails;
+  //   const { email,
+  //     companyName,
+  //     phoneNumber,
+  //     address,
+  //     regNum } = this.profileDetails;
 
-    this.userService.updateProfile(email,
-      companyName,
-      phoneNumber,
-      address,
-      regNum)
-      .subscribe(() => {
-        console.log("Change profile details successful.")
-      });
-  }
+  //   this.userService.updateProfile(email,
+  //     companyName,
+  //     phoneNumber,
+  //     address,
+  //     regNum)
+  //     .subscribe(() => {
+  //       console.log("Change profile details successful.")
+  //     });
+  // }
 };

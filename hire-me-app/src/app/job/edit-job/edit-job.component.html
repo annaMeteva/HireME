@@ -1,1 +1,183 @@
-<p>edit-job works!</p>
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="text-center mb-5 wow fadeInUp">Edit job #{{ job._id }}</h1>
+        <form
+          class="form-container"
+          [formGroup]="form"
+          (ngSubmit)="updateJob()"
+        >
+          <div class="row g-3">
+            <div class="col-12 col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Title"
+                id="inputTitle"
+                name="inputTitle"
+                formControlName="title"
+              />
+              <ng-container *ngIf="form.get('title')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('title')?.errors?.['required']"
+                >
+                  Title is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Location"
+                id="inputLocation"
+                name="inputLocation"
+                formControlName="location"
+              />
+            </div>
+            <div class="col-12 col-sm-6">
+              <select
+                class="form-select"
+                aria-label="Job nature"
+                id="inputJobNature"
+                name="inputJobNature"
+                formControlName="jobNature"
+              >
+                <option value="" disabled selected hidden>
+                  Please select job nature
+                </option>
+                <option value="Full-time" selected>Full-time</option>
+                <option value="Part-time">Part-time</option>
+              </select>
+              <ng-container *ngIf="form.get('jobNature')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('jobNature')?.errors?.['required']"
+                >
+                  Job nature is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <select
+                class="form-select"
+                aria-label="Category"
+                id="inputCategory"
+                name="inputCategory"
+                formControlName="category"
+              >
+                <option value="" disabled selected hidden>
+                  Please select category
+                </option>
+                <option *ngFor="let c of categories" [value]="c.category_id">
+                  {{ c.name }}
+                </option>
+              </select>
+              <ng-container *ngIf="form.get('category')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('category')?.errors?.['required']"
+                >
+                  Category is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Min.salary"
+                id="inputSalary1"
+                name="inputSalary1"
+                formControlName="salary1"
+              />
+              <ng-container *ngIf="form.get('salary1')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('salary1')?.errors?.['required']"
+                >
+                  Min.salary is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Max.salary"
+                id="inputSalary2"
+                name="inputSalary2"
+                formControlName="salary2"
+              />
+            </div>
+            <div class="col-12">
+              <textarea
+                class="form-control"
+                rows="5"
+                placeholder="Qualifications (please separate them with commas)"
+                id="inputQualifications"
+                name="inputQualifications"
+                formControlName="qualifications"
+              ></textarea>
+              <ng-container *ngIf="form.get('qualifications')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('qualifications')?.errors?.['maxlength']"
+                >
+                  The length of Qualifications must 200 characters or fewer. You
+                  entered 200 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('qualifications')?.errors?.['required']"
+                >
+                  Qualifications is required.
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12">
+              <textarea
+                class="form-control"
+                rows="5"
+                placeholder="Description"
+                id="inputDescription"
+                name="inputDescription"
+                formControlName="description"
+              ></textarea>
+              <ng-container *ngIf="form.get('description')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('description')?.errors?.['maxlength']"
+                >
+                  The length of Description must 200 characters or fewer. You
+                  entered 200 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('description')?.errors?.['required']"
+                >
+                  Description is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="row mt-3 justify-content-center">
+              <div class="col-5">
+                <button
+                  [disabled]="form.invalid"
+                  [style]="{
+                    backgroundColor: form.invalid ? 'grey' : '#00B074'
+                  }"
+                  class="btn btn-green w-100"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

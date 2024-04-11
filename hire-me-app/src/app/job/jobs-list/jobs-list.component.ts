@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Job } from 'src/app/types/job';
 import { UserService } from 'src/app/user/user.service';
+
 
 @Component({
   selector: 'app-jobs-list',
@@ -12,9 +13,8 @@ import { UserService } from 'src/app/user/user.service';
 export class JobsListComponent implements OnInit {
   jobs: Job[] | null = [];
   // isLoading: boolean = true;
-
   constructor(private apiService: ApiService, private userService: UserService,
-    private activeRoute: ActivatedRoute) { }
+    private activeRoute: ActivatedRoute, private router: Router) { }
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
@@ -26,7 +26,7 @@ export class JobsListComponent implements OnInit {
       if (id !== undefined) {
         this.apiService.getJobsByCategoryId(id).subscribe((jobs) => {
           this.jobs = jobs;
-          console.log(jobs)
+          console.log(jobs);
         });
       } else {
         this.apiService.getJobs().subscribe((jobs) => {
@@ -34,5 +34,13 @@ export class JobsListComponent implements OnInit {
         });
       }
     });
+  }
+  navigateToJobDetails(id: string) {
+    if (this.router.url.includes("search")) {
+      this.router.navigate(['../../' + id], { relativeTo: this.activeRoute });
+    }
+    else {
+      this.router.navigate(['/' + id], { relativeTo: this.activeRoute });
+    }
   }
 }

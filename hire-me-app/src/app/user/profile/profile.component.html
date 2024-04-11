@@ -7,16 +7,47 @@
             class="rounded-circle mt-5"
             width="150px"
             src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
-          /><span class="font-weight-bold">Hello, name</span
+          /><span class="font-weight-bold"
+            >Hello, {{ profileDetails.companyName }}</span
           ><span class="text-black-50"></span><span> </span>
         </div>
       </div>
       <div class="col-md-9 border-right">
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="text-right wow fadeInUp">Profile Settings</h3>
+            <h1 class="text-center wow fadeInUp">Profile Settings</h1>
           </div>
-          <form [formGroup]="form" (ngSubmit)="saveProfileHandle()">
+          <div class="dataContainer">
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <p>
+                  <span>Company name </span>: {{ profileDetails.companyName }}
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p><span>Email </span>: {{ profileDetails.email }}</p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <p>
+                  <span>Phone number </span>: {{ profileDetails.phoneNumber }}
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <span>Registration number </span>: {{ profileDetails.regNum }}
+                </p>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <p><span>Address </span>: {{ profileDetails.address }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- <form [formGroup]="form" (ngSubmit)="saveProfileHandle()">
             <div class="row mt-2">
               <div class="col-md-6">
                 <label class="labels">Company name</label
@@ -130,7 +161,7 @@
                 Save changes
               </button>
             </div>
-          </form>
+          </form> -->
         </div>
       </div>
     </div>

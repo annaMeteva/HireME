@@ -33,6 +33,7 @@ export class JobDetailComponent implements OnInit {
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
   }
+
   deleteJob(job_id: string) {
     this.apiService.deleteJob(job_id).subscribe({
       next: (response) => {
