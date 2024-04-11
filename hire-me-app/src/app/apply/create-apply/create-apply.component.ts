@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/api.service';
 import { Job } from 'src/app/types/job';
 
 @Component({
-  selector: 'app-job-apply-form',
-  templateUrl: './job-apply-form.component.html',
-  styleUrls: ['./job-apply-form.component.css']
+  selector: 'app-create-apply',
+  templateUrl: './create-apply.component.html',
+  styleUrls: ['./create-apply.component.css']
 })
-export class JobApplyFormComponent implements OnInit {
+export class CreateApplyComponent implements OnInit {
   job = {} as Job;
 
   constructor(private apiService: ApiService,

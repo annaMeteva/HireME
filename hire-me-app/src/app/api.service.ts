@@ -21,11 +21,11 @@ export class ApiService {
   }
   getJobsByOwner(id: string) {
     const { apiUrl } = environment;
-    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=_ownerId%3D%22` + id + '%22');
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=_ownerId%3D%22${id}%22`);
   }
   getJobsByCategoryId(id: string) {
     const { apiUrl } = environment;
-    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=category_id%3D%22` + id + '%22');
+    return this.http.get<Job[]>(`${apiUrl}/data/jobs?where=category_id%3D%22${id}%22`);
   }
   getJob(id: string) {
     const { apiUrl } = environment;
@@ -39,7 +39,7 @@ export class ApiService {
   updateJob(id: string, title: string, job_nature: string, category_id: string, location: string, salary: string, qualifications: string, description: string) {
     const { apiUrl } = environment;
     const payload = { title, job_nature, category_id, location, salary, qualifications, description };
-    return this.http.put<Job>(`${apiUrl}/data/jobs/` + id, payload);
+    return this.http.put<Job>(`${apiUrl}/data/jobs/${id}`, payload);
   }
   deleteJob(id: string) {
     const { apiUrl } = environment;
@@ -48,15 +48,29 @@ export class ApiService {
   createApply(name: string,
     email: string, phone: string, portfolioLink: string, coverletter: string, _jobId: string) {
     const { apiUrl } = environment;
-    const payload = { name, email, portfolioLink, coverletter, _jobId };
+    const payload = { name, email, phone, portfolioLink, coverletter, _jobId };
     return this.http.post<Apply>(`${apiUrl}/data/applies`, payload);
   }
   getApplies(id: string) {
     const { apiUrl } = environment;
     return this.http.get<Apply[]>(`${apiUrl}/data/applies`);
   }
+  getApply(id: string) {
+    const { apiUrl } = environment;
+    return this.http.get<Apply>(`${apiUrl}/data/applies/${id}`);
+  }
   getAppliesByOwner(id: string) {
     const { apiUrl } = environment;
-    return this.http.get<Apply[]>(`${apiUrl}/data/applies?where=_ownerId%3D%22` + id + '%22');
+    return this.http.get<Apply[]>(`${apiUrl}/data/applies?where=_ownerId%3D%22${id}%22`);
+  }
+  updateApply(id: string, name: string,
+    email: string, phone: string, portfolioLink: string, coverletter: string) {
+    const { apiUrl } = environment;
+    const payload = { name, email, phone, portfolioLink, coverletter };
+    return this.http.put<Apply>(`${apiUrl}/data/applies/${id}`, payload);
+  }
+  deleteApply(id: string) {
+    const { apiUrl } = environment;
+    return this.http.delete<Apply>(`${apiUrl}/data/applies/${id}`);
   }
 }

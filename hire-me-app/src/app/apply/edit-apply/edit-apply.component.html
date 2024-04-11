@@ -1,0 +1,114 @@
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h4 class="mb-4">Edit apply for job #{{ job.title }}</h4>
+        <form
+          class="form-container"
+          [formGroup]="form"
+          (ngSubmit)="updateApply()"
+        >
+          <div class="row g-3">
+            <div class="col-12 col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your name"
+                id="name"
+                name="name"
+                formControlName="name"
+              />
+              <ng-container *ngIf="form.get('name')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('name')?.errors?.['required']"
+                >
+                  Name is required!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="Your email"
+                formControlName="email"
+              />
+              <ng-container *ngIf="form.get('email')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['required']"
+                >
+                  Email is required!
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('email')?.errors?.['email']"
+                >
+                  Email is not valid!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Portfolio website"
+                id="portfolioLink"
+                name="portfolioLink"
+                formControlName="portfolioLink"
+              />
+            </div>
+            <div class="col-12 col-sm-6">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Phone number"
+                id="phone"
+                name="phone"
+                formControlName="phone"
+              />
+            </div>
+            <div class="col-12">
+              <textarea
+                class="form-control"
+                rows="5"
+                placeholder="Coverletter"
+                id="coverletter"
+                name="coverletter"
+                formControlName="coverletter"
+              ></textarea>
+              <ng-container *ngIf="form.get('coverletter')?.touched">
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('coverletter')?.errors?.['required']"
+                >
+                  Coverletter is required!
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="form.get('coverletter')?.errors?.['maxlength']"
+                >
+                  Coverletter is not valid! Max length 300 characters!
+                </p>
+              </ng-container>
+            </div>
+            <div class="col-12">
+              <button
+                [disabled]="form.invalid"
+                [style]="{
+                  backgroundColor: form.invalid ? 'grey' : '#00B074'
+                }"
+                class="btn btn-green w-100"
+              >
+                Update apply
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

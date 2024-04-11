@@ -11,11 +11,12 @@ import { UserModule } from './user/user.module';
 import { JobModule } from './job/job.module';
 import { ErrorComponent } from './error/error.component';
 import { appInterceptorProvider } from './app.interceptor';
+import { ApplyModule } from './apply/apply.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +27,7 @@ import { appInterceptorProvider } from './app.interceptor';
     HttpClientModule,
     UserModule,
     JobModule,
+    ApplyModule,
     AppRoutingModule,
   ],
   providers: [appInterceptorProvider],

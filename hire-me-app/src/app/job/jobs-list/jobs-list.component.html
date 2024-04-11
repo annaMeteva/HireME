@@ -52,7 +52,7 @@
             </div>
             <div *ngIf="isLoggedIn" class="d-flex mb-3">
               <a class="btn btn-green me-1" [routerLink]="job._id">View job</a>
-              <a class="btn btn-green" [routerLink]="'/apply/' + job._id"
+              <a class="btn btn-green" [routerLink]="'/create-apply/' + job._id"
                 >Add apply</a
               >
             </div>

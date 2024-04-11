@@ -1,0 +1,57 @@
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+  <div class="container">
+    <div class="row gy-5 gx-4">
+      <div class="col-lg-8">
+        <div class="d-flex align-items-center mb-5">
+          <img
+            class="flex-shrink-0 img-fluid border rounded"
+            src=""
+            alt="Candidate avatar"
+            style="width: 80px; height: 80px"
+          />
+          <div class="text-start ps-4">
+            <h3 class="mb-3">{{ apply.name }} for job {{ job.title }}</h3>
+            <span class="text-truncate me-3"
+              ><i class="fa fa-envelope text-green me-2"></i
+              >{{ apply.email }}</span
+            >
+            <span class="text-truncate me-3"
+              ><i class="fa fa-phone text-green me-2"></i
+              >{{ apply.phone }}</span
+            >
+            <span class="text-truncate me-0"
+              ><i class="fa fa-link text-green me-2"></i
+              >{{ apply.portfolioLink }}</span
+            >
+          </div>
+        </div>
+        <div class="mb-5">
+          <h4 class="mb-3">Coverletter</h4>
+          <p>{{ apply.coverletter }}</p>
+        </div>
+        <button class="btn btn-danger" (click)="deleteApply(apply._id!)">
+          Delete apply
+        </button>
+        <a
+          [routerLink]="'../../edit-apply/' + apply._id"
+          class="btn btn-warning ms-1"
+        >
+          Edit apply
+        </a>
+      </div>
+
+      <div class="col-lg-4">
+        <div
+          class="bg-light rounded p-5 mb-4 wow slideInUp"
+          data-wow-delay="0.1s"
+        >
+          <h4 class="mb-4">Apply Summery</h4>
+          <p>
+            <i class="fa fa-angle-right text-green me-2"></i>Published On:
+            {{ apply._createdOn | date : "dd/MM/yyyy hh:mma" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

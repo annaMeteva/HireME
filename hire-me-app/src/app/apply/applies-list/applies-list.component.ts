@@ -20,12 +20,22 @@ export class AppliesListComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe((data) => {
       const id = data['jobId'];
-      this.apiService.getJob(id).subscribe((job) => {
-        this.job = job;
-      });
-      this.apiService.getApplies(id).subscribe((applies) => {
-        this.applies = applies.filter((a => a._jobId === id));
-      })
+      if (id !== undefined) {
+        this.apiService.getJob(id).subscribe((job) => {
+          this.job = job;
+        });
+        this.apiService.getApplies(id).subscribe((applies) => {
+          this.applies = applies.filter((a => a._jobId === id));
+        });
+      }
+      else {
+        this.apiService.getApplies(id).subscribe((applies) => {
+          this.applies = applies;
+        });
+      }
     });
+  }
+  navigateToApplyDetails(id: string) {
+    this.router.navigate(["apply/" + id])
   }
 }
